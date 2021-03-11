@@ -9,15 +9,24 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $user = User::create([
-             'name' => $request->name,
-             'email'    => $request->email,
-             'password' => $request->password,
-         ]);
+        try{
+            $user = User::create([
+                'name' => $request->name,
+                'email'    => $request->email,
+                'password' => $request->password,
+            ]);
+   
+           $token = auth()->login($user);
+   
+           return $this->respondWithToken($token);
+        }
+        catch(\Exception $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'user already exists'
+                ]);
+        }
 
-        $token = auth()->login($user);
-
-        return $this->respondWithToken($token);
     }
 
     public function login()

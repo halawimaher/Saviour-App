@@ -33,6 +33,7 @@ Route::resource('/services', 'ServiceController');
 Route::resource('/provider-services', 'ProviderServicesController');
 Route::resource('/available-times', 'TimeOfAvailabilityController');
 Route::resource('/provider-availability', 'ProviderAvailabilityController');
+Route::resource('/cities', 'CityController');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
 

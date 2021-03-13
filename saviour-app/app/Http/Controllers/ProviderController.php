@@ -15,7 +15,7 @@ class ProviderController extends Controller
     public function index()
     {
         //
-        return response()->json(Provider::all());
+        return response()->json(Provider::with('feedback', 'services', 'availability', 'location')->get());
     }
 
     /**

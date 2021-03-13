@@ -23,11 +23,17 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// move all this to middleware when done
+Route::resource('/requestors', 'RequestorsController');
+Route::resource('/providers', 'ProviderController');
+Route::resource('/provider-feedback', 'ProviderFeedbackController');
+Route::resource('/requestor-feedback', 'RequestorFeedbackController');
+Route::resource('/bookings', 'BookingController');
+Route::resource('/services', 'ServiceController');
+Route::resource('/provider-services', 'ProviderServicesController');
+Route::resource('/available-times', 'TimeOfAvailabilityController');
+Route::resource('/provider-availability', 'ProviderAvailabilityController');
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    // Route::get('/tasks', 'TaskController@index');
-    // Route::get('/task/{id}', 'TaskController@show');
-    // Route::post('/task/{id}', 'TaskController@update');
-    // Route::post('/task', 'TaskController@store');
-    // Route::delete('/task/{id}', 'TaskController@destroy');
+
 });

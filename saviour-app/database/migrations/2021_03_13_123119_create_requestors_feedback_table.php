@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProviderRatingsTable extends Migration
+class CreateRequestorsFeedbackTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateProviderRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('provider_ratings', function (Blueprint $table) {
+        Schema::create('requestors_feedback', function (Blueprint $table) {
             $table->id();
-            $table->integer('provider_id');
+            $table->integer('requestor_id');
+            $table->string('feedback');
             $table->integer('rating');
 
             $table->timestamps();
@@ -29,6 +30,6 @@ class CreateProviderRatingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provider_ratings');
+        Schema::dropIfExists('requestors_feedback');
     }
 }

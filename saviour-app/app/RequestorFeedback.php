@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProviderRating extends Model
+class RequestorFeedback extends Model
 {
     //
-    protected $table = "provider_ratings";
+    protected $table = "requestors_feedback";
 
     protected $fillable = [
-        'provider_id',
+        'requestor_id',
+        'feedback',
         'rating'
 
     ];

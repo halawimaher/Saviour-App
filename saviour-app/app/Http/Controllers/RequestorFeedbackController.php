@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProviderRating;
+use App\RequestorFeedback;
 use Illuminate\Http\Request;
 
-class ProviderRatingController extends Controller
+class RequestorFeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class ProviderRatingController extends Controller
     public function index()
     {
         //
-        return response()->json(ProviderRating::all());
+        return response()->json(RequestorFeedback::all());
     }
 
     /**
@@ -27,18 +27,18 @@ class ProviderRatingController extends Controller
     public function store(Request $request)
     {
         //
-        $rating = new ProviderRating();
-        $rating->fill($request->all());
+        $feedback = new RequestorFeedback();
+        $feedback->fill($request->all());
 
-        if($rating->save())
+        if($feedback->save())
         {
             return response()->json([
                 'success' => true,
-                'data' => $rating
+                'data' => $feedback
             ]);
             return response()->json([
                 'success' => false,
-                'message' => 'failed to create'
+                'message' => 'Failed to send feedback'
                 ]);
         }
     }
@@ -46,23 +46,23 @@ class ProviderRatingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProviderRating  $providerRating
+     * @param  \App\RequestorFeedback  $requestorFeedback
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        $rating = ProviderRating::find($id);
-        if($rating)
+        $feedback = RequestorFeedback::find($id);
+        if($feedback)
         {
             return response()->json([
                 'success' => true,
-                'data' => $rating
+                'data' => $feedback
             ]);
         }
         return response()->json([
             'success' => false,
-            'message' => 'Not found'
+            'message' => 'Feedback not found'
         ]);
     }
 
@@ -70,25 +70,25 @@ class ProviderRatingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProviderRating  $providerRating
+     * @param  \App\RequestorFeedback  $requestorFeedback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,  $id)
     {
         //
-        $rating = ProviderRating::find($id);
-        if($rating){
-            $rating->update($request->all());
-            if($rating->save())
+        $feedback = RequestorFeedback::find($id);
+        if($feedback){
+            $feedback->update($request->all());
+            if($feedback->save())
             {
                 return response()->json([
                     'success' => true,
-                    'data' => $rating
+                    'data' => $feedback
                 ]);
             }
             return response()->json([
                 'success' => false,
-                'message' => 'Not found'
+                'message' => 'Feedback not found'
             ]);
         }
     }
@@ -96,23 +96,23 @@ class ProviderRatingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProviderRating  $providerRating
+     * @param  \App\RequestorFeedback  $requestorFeedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProviderRating $providerRating, $id)
+    public function destroy($id)
     {
         //
-        $rating = ProviderRating::find($id);
-        if($rating->delete())
+        $feedback = RequestorFeedback::find($id);
+        if($feedback->delete())
         {
             return response()->json([
                 'success' => true,
-                'message' => 'Rating successfully deleted'
+                'message' => 'Record successfully deleted'
             ]);
             return response()->json([
                 'success' => false,
-                'message' => 'Not found'
+                'message' => 'Record not found'
             ]); 
+        }
     }
-}
 }

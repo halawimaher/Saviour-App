@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Feedback;
+use App\ProviderFeedback;
 use Illuminate\Http\Request;
 
-class FeedbackController extends Controller
+class ProviderFeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class FeedbackController extends Controller
     public function index()
     {
         //
-        return response()->json(Feedback::all());
+        return response()->json(ProviderFeedback::all());
     }
 
     /**
@@ -27,7 +27,7 @@ class FeedbackController extends Controller
     public function store(Request $request)
     {
         //
-        $feedback = new Feedback();
+        $feedback = new ProviderFeedback();
         $feedback->fill($request->all());
 
         if($feedback->save())
@@ -46,13 +46,13 @@ class FeedbackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Feedback  $feedback
+     * @param  \App\ProviderFeedback  $feedback
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        $feedback = Feedback::find($id);
+        $feedback = ProviderFeedback::find($id);
         if($feedback)
         {
             return response()->json([
@@ -70,13 +70,13 @@ class FeedbackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Feedback  $feedback
+     * @param  \App\ProviderFeedback  $feedback
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,  $id)
     {
         //
-        $feedback = Feedback::find($id);
+        $feedback = ProviderFeedback::find($id);
         if($feedback){
             $feedback->update($request->all());
             if($feedback->save())
@@ -96,13 +96,13 @@ class FeedbackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Feedback  $feedback
+     * @param  \App\ProviderFeedback  $feedback
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $feedback = Feedback::find($id);
+        $feedback = ProviderFeedback::find($id);
         if($feedback->delete())
         {
             return response()->json([

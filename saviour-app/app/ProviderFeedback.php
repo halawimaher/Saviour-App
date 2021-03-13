@@ -4,14 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class ProviderFeedback extends Model
 {
     //
-    protected $table = "feedback";
+    protected $table = "providers_feedback";
 
     protected $fillable = [
         'provider_id',
-        'feedback'
+        'feedback',
+        'rating'
 
     ];
     public $timestamps = true;

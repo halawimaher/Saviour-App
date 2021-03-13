@@ -26,9 +26,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 // move all this to middleware when done
 Route::resource('/requestors', 'RequestorsController');
 Route::resource('/providers', 'ProviderController');
-Route::resource('/feedback', 'FeedbackController');
+Route::resource('/provider-feedback', 'ProviderFeedbackController');
+Route::resource('/requestor-feedback', 'RequestorFeedbackController');
 Route::resource('/bookings', 'BookingController');
-Route::resource('/ratings', 'ProviderRatingController');
 Route::resource('/services', 'ServiceController');
 Route::resource('/provider-services', 'ProviderServicesController');
 Route::resource('/available-times', 'TimeOfAvailabilityController');

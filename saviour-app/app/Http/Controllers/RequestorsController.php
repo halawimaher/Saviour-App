@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Requestors;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class RequestorsController extends Controller
 {
@@ -78,6 +79,16 @@ class RequestorsController extends Controller
     {
         //
         $requestors = Requestors::find($id);
+
+        $path = "";
+        if ($request->image) {
+        $path = Storage::disk('public')->put('', $request->image);
+        }
+   
+        if ($path != "") {
+            $requestors->image = $path;
+        }
+
         if($requestors){
             $requestors->update($request->all());
             if($requestors->save())

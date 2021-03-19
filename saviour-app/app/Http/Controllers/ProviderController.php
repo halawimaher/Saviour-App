@@ -28,8 +28,20 @@ class ProviderController extends Controller
     {
         //
         $provider = new Provider();
-        $provider->fill($request->all());
-
+        $image = $request->file('image');
+        $name = time() . '_' . $image->getClientOriginalName();
+        $path = $request->file('image')->storeAs('', $name, 'public');
+        if($provider){
+            $provider->full_name = $request->full_name;
+            $provider->city_id = $request->city_id;
+            $provider->phone = $request->phone;
+            $provider->price_per_hour = $request->price_per_hour;
+            $provider->works_from = $request->works_from;
+            $provider->works_till = $request->works_till;
+            $provider->image = $path;
+            $provider->confirmation_docs = $request->confirmation_docs;
+            $provider->approved = $request->approved;
+        }
         if($provider->save())
         {
             return response()->json([
@@ -88,8 +100,19 @@ class ProviderController extends Controller
     {
         //
         $provider = Provider::find($id);
+        $image = $request->file('image');
+        $name = time() . '_' . $image->getClientOriginalName();
+        $path = $request->file('image')->storeAs('', $name, 'public');
         if($provider){
-            $provider->update($request->all());
+            $provider->full_name = $request->full_name;
+            $provider->city_id = $request->city_id;
+            $provider->phone = $request->phone;
+            $provider->price_per_hour = $request->price_per_hour;
+            $provider->works_from = $request->works_from;
+            $provider->works_till = $request->works_till;
+            $provider->image = $path;
+            $provider->confirmation_docs = $request->confirmation_docs;
+            $provider->approved = $request->approved;
             if($provider->save())
             {
                 return response()->json([

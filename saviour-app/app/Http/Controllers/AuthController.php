@@ -14,6 +14,7 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email'    => $request->email,
                 'password' => $request->password,
+                'role_id' => $request->role_id
             ]);
    
            $token = auth()->login($user);
@@ -23,8 +24,8 @@ class AuthController extends Controller
         catch(\Exception $e){
             return response()->json([
                 'success' => false,
-                'message' => 'user already exists'
-                ]);
+                'message' => 'Sorry, this user already exists!'
+            ], 400);
         }
 
     }
@@ -52,7 +53,8 @@ class AuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => auth()->factory()->getTTL() * 60
+            'expires_in'   => auth()->factory()->getTTL() * 60,
+            'role' => auth()->user()->role_id
         ]);
     }
 }

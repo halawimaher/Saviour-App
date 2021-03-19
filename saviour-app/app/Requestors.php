@@ -13,7 +13,9 @@ class Requestors extends Model
         'full_name',
         'phone',
         'image',
-        'city_id'
+        'city_id',
+        'latitude',
+        'longitude'
 
     ];
     public $timestamps = true;

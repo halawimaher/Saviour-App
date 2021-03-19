@@ -14,6 +14,10 @@ class AuthController extends Controller
                 'name' => $request->name,
                 'email'    => $request->email,
                 'password' => $request->password,
+                'phone' => $request->phone,
+                'city' => $request->city,
+                'image' => $request->image,
+                'address' => $request->address,
                 'role_id' => $request->role_id
             ]);
    
@@ -54,7 +58,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type'   => 'bearer',
             'expires_in'   => auth()->factory()->getTTL() * 60,
-            'role' => auth()->user()->role_id
+            'role_id' => auth()->user()->role_id
         ]);
     }
 }

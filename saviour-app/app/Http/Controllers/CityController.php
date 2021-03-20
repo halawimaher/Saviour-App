@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Requestors;
+use App\City;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
-class RequestorsController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +15,7 @@ class RequestorsController extends Controller
     public function index()
     {
         //
-        return response()->json(Requestors::with('feedback')->get());
+        return response()->json(City::with('requestorResidents', 'providerResidents')->get());
     }
 
     /**
@@ -28,43 +27,42 @@ class RequestorsController extends Controller
     public function store(Request $request)
     {
         //
-        $requestor = new Requestors();
-        $requestor->fill($request->all());
+        $data = new City();
+        $data->fill($request->all());
 
-        if($requestor->save())
+        if($data->save())
         {
             return response()->json([
                 'success' => true,
-                'data' => $requestor
+                'data' => $data
             ]);
             return response()->json([
                 'success' => false,
                 'message' => 'Failed to create'
                 ]);
         }
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Requestors  $requestors
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        $requestor = Requestors::find($id);
-        if($requestor)
+        $data = City::find($id);
+        if($data)
         {
             return response()->json([
                 'success' => true,
-                'data' => $requestor
+                'data' => $data
             ]);
         }
         return response()->json([
             'success' => false,
-            'message' => 'User not found'
+            'message' => 'Not found'
         ]);
     }
 
@@ -72,35 +70,25 @@ class RequestorsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Requestors  $requestors
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $requestors = Requestors::find($id);
-
-        $path = "";
-        if ($request->image) {
-        $path = Storage::disk('public')->put('', $request->image);
-        }
-   
-        if ($path != "") {
-            $requestors->image = $path;
-        }
-
-        if($requestors){
-            $requestors->update($request->all());
-            if($requestors->save())
+        $data = City::find($id);
+        if($data){
+            $data->update($request->all());
+            if($data->save())
             {
                 return response()->json([
                     'success' => true,
-                    'data' => $requestors
+                    'data' => $data
                 ]);
             }
             return response()->json([
                 'success' => false,
-                'message' => 'User not found'
+                'message' => 'Not found'
             ]);
         }
     }
@@ -108,14 +96,14 @@ class RequestorsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Requestors  $requestors
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requestors $requestors, $id)
+    public function destroy($id)
     {
         //
-        $requestors = Requestors::find($id);
-        if($requestors->delete())
+        $data = City::find($id);
+        if($data->delete())
         {
             return response()->json([
                 'success' => true,

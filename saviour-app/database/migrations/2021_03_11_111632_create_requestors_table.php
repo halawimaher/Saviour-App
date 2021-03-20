@@ -17,6 +17,11 @@ class CreateRequestorsTable extends Migration
             $table->id();
             $table->string('full_name');
             $table->integer('phone');
+            $table->string('image');
+            $table->integer('city_id');
+            $table->float('latitude');
+            $table->float('longitude');
+
             $table->timestamps();
         });
     }

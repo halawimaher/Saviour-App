@@ -14,4 +14,14 @@ class Service extends Model
 
     ];
     public $timestamps = true;
+
+    public function providers()
+    {
+        return $this->belongsToMany('App\Provider', 'provider_services', 'service_id', 'provider_id' );
+    }
+
+    public function availability()
+    {
+        return $this->belongsToMany('App\Provider', 'provider_availabilities', 'available_time_slot_id', 'provider_id' );
+    }
 }

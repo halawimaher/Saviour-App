@@ -15,7 +15,7 @@ class ServiceController extends Controller
     public function index()
     {
         //
-        return response()->json(Service::all());
+        return response()->json(Service::with('providers')->get());
     }
 
     /**

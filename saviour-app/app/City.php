@@ -18,12 +18,12 @@ class City extends Model
 
     public function providerResidents()
     {
-        return $this->hasMany('App\Provider');
+        return $this->hasMany('App\User');
     }
     
     public function requestorResidents()
     {
-        return $this->hasMany('App\Requestors');
+        return $this->hasMany('App\User');
     }
     
 }

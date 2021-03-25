@@ -17,8 +17,9 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->integer('requestor_id');
             $table->integer('provider_id');
-            $table->dateTime('booked_from');
-            $table->dateTime('booked_till');
+            $table->decimal(9,6)('longitude');
+            $table->decimal(9,6)('latitude');
+            $table->integer('status');
 
             $table->timestamps();
         });

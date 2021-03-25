@@ -12,8 +12,9 @@ class Booking extends Model
     protected $fillable = [
         'requestor_id',
         'provider_id',
-        'booked_from',
-        'booked_till'
+        'longitude',
+        'latitude',
+        'status'
         
 
     ];

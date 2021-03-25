@@ -15,7 +15,7 @@ class CityController extends Controller
     public function index()
     {
         //
-        return response()->json(City::with('requestorResidents', 'providerResidents')->get());
+        return response()->json(City::all());
     }
 
     /**

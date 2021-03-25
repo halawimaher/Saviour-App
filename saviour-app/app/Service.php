@@ -17,7 +17,7 @@ class Service extends Model
 
     public function providers()
     {
-        return $this->belongsToMany('App\Provider', 'provider_services', 'service_id', 'provider_id' );
+        return $this->belongsToMany('App\User', 'provider_services', 'service_id', 'provider_id' );
     }
 
     public function availability()
